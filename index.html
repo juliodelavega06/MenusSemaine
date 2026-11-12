@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MenusSemaine</title>
+
+    <meta name="theme-color" content="#2E7D32">
+
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="topbar">
+    <h1>🍽️ MenusSemaine</h1>
+</header>
+
+<nav class="tabs">
+    <button class="tab-btn active" data-tab="planning">
+        📅 Planning
+    </button>
+
+    <button class="tab-btn" data-tab="recipes">
+        🍴 Recettes
+    </button>
+
+    <button class="tab-btn" data-tab="shopping">
+        🛒 Courses
+    </button>
+
+    <button class="tab-btn" data-tab="settings">
+        ⚙️ Réglages
+    </button>
+</nav>
+
+<main>
+
+    <!-- PLANNING -->
+
+    <section id="planning" class="tab-content active">
+
+        <div class="toolbar">
+            <button id="generateMenuBtn" class="primary-btn">
+                🎲 Générer la semaine
+            </button>
+        </div>
+
+        <div id="weekContainer"></div>
+
+    </section>
+
+    <!-- RECETTES -->
+
+    <section id="recipes" class="tab-content">
+
+        <div class="toolbar">
+
+            <button id="addRecipeBtn" class="primary-btn">
+                ➕ Ajouter une recette
+            </button>
+
+        </div>
+
+        <div id="recipesContainer"></div>
+
+    </section>
+
+    <!-- COURSES -->
+
+    <section id="shopping" class="tab-content">
+
+        <div class="toolbar">
+
+            <button id="generateShoppingBtn" class="primary-btn">
+                🛒 Générer la liste
+            </button>
+
+        </div>
+
+        <div id="shoppingContainer"></div>
+
+    </section>
+
+    <!-- PARAMETRES -->
+
+    <section id="settings" class="tab-content">
+
+        <div class="card">
+
+            <h2>Préférences</h2>
+
+            <label>
+                Nombre de personnes
+                <input
+                    type="number"
+                    id="peopleCount"
+                    min="1"
+                    max="12"
+                    value="4">
+            </label>
+
+            <label>
+                Temps de préparation maximum (minutes)
+                <input
+                    type="number"
+                    id="maxPrepTime"
+                    min="5"
+                    max="120"
+                    value="20">
+            </label>
+
+        </div>
+
+        <div class="card">
+
+            <h2>Types de repas</h2>
+
+            <label class="checkbox">
+                <input type="checkbox" id="meatEnabled" checked>
+                Viande
+            </label>
+
+            <label class="checkbox">
+                <input type="checkbox" id="fishEnabled" checked>
+                Poisson
+            </label>
+
+            <label class="checkbox">
+                <input type="checkbox" id="veggieEnabled" checked>
+                Végétarien
+            </label>
+
+        </div>
+
+        <div class="card">
+
+            <h2>Produits toujours disponibles</h2>
+
+            <textarea
+                id="pantryItems"
+                rows="8"
+                placeholder="sel&#10;poivre&#10;huile&#10;farine&#10;riz"></textarea>
+
+        </div>
+
+        <button id="saveSettingsBtn" class="primary-btn">
+            💾 Sauvegarder
+        </button>
+
+    </section>
+
+</main>
+
+<!-- MODAL RECETTE -->
+
+<div id="recipeModal" class="modal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+            <h2 id="modalTitle">
+                Nouvelle recette
+            </h2>
+
+            <button id="closeModalBtn">
+                ✖
+            </button>
+        </div>
+
+        <form id="recipeForm">
+
+            <input
+                type="hidden"
+                id="recipeId">
+
+            <label>
+                Nom
+                <input
+                    type="text"
+                    id="recipeName"
+                    required>
+            </label>
+
+            <label>
+                Temps préparation
+                <input
+                    type="number"
+                    id="recipePrepTime"
+                    value="15">
+            </label>
+
+            <label>
+                Temps cuisson
+                <input
+                    type="number"
+                    id="recipeCookTime"
+                    value="30">
+            </label>
+
+            <label>
+                Type
+                <select id="recipeCategory">
+                    <option value="viande">Viande</option>
+                    <option value="poisson">Poisson</option>
+                    <option value="vegetarien">Végétarien</option>
+                </select>
+            </label>
+
+            <label>
+                Ingrédients
+                <textarea
+                    id="recipeIngredients"
+                    rows="6"
+                    placeholder="1kg poulet&#10;2 tomates&#10;1 oignon"></textarea>
+            </label>
+
+            <label>
+                Préparation
+                <textarea
+                    id="recipeInstructions"
+                    rows="8"></textarea>
+            </label>
+
+            <button type="submit" class="primary-btn">
+                💾 Enregistrer
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<footer class="bottom-space"></footer>
+
+<script src="js/storage.js"></script>
+<script src="js/recipes.js"></script>
+<script src="js/shopping.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>
