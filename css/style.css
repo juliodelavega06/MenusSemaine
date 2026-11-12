@@ -212,3 +212,7 @@ textarea {
     border-radius: 16px;
     padding: 16px;
     margin-bottom: 15px
+
+.modal {
+    display: none;
+}
