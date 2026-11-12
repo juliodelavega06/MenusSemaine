@@ -1,10 +1,21 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    console.log("MenusSemaine démarré");
+    initializeRecipes();
 
-    // Gestion des onglets
+    renderRecipes();
 
-    const tabs = document.querySelectorAll(".tab-btn");
+    initializeTabs();
+
+    initializeModal();
+
+    initializeGenerateWeek();
+
+});
+
+function initializeTabs() {
+
+    const tabs =
+        document.querySelectorAll(".tab-btn");
 
     tabs.forEach(tab => {
 
@@ -12,11 +23,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
             document
                 .querySelectorAll(".tab-btn")
-                .forEach(btn => btn.classList.remove("active"));
+                .forEach(btn => {
+                    btn.classList.remove("active");
+                });
 
             document
                 .querySelectorAll(".tab-content")
-                .forEach(content => content.classList.remove("active"));
+                .forEach(content => {
+                    content.classList.remove("active");
+                });
 
             tab.classList.add("active");
 
@@ -33,38 +48,127 @@ document.addEventListener("DOMContentLoaded", () => {
 
     });
 
-    // Fenêtre recette
+}
 
-    const modal = document.getElementById("recipeModal");
+function initializeModal() {
 
-    if (modal) {
-        modal.style.display = "none";
-    }
+    const modal =
+        document.getElementById("recipeModal");
 
-    const addRecipeBtn =
-        document.getElementById("addRecipeBtn");
+    modal.style.display = "none";
 
-    const closeModalBtn =
-        document.getElementById("closeModalBtn");
-
-    if (addRecipeBtn) {
-
-        addRecipeBtn.addEventListener("click", () => {
+    document
+        .getElementById("addRecipeBtn")
+        .addEventListener("click", () => {
 
             modal.style.display = "block";
 
         });
 
-    }
-
-    if (closeModalBtn) {
-
-        closeModalBtn.addEventListener("click", () => {
+    document
+        .getElementById("closeModalBtn")
+        .addEventListener("click", () => {
 
             modal.style.display = "none";
 
         });
 
-    }
+    document
+        .getElementById("recipeForm")
+        .addEventListener("submit", e => {
 
-});
+            e.preventDefault();
+
+            const recipe = {
+                id: Date.now(),
+                name: document.getElementById("recipeName").value,
+                prepTime: document.getElementById("recipePrepTime").value,
+                cookTime: document.getElementById("recipeCookTime").value,
+                category: document.getElementById("recipeCategory").value,
+                ingredients: document.getElementById("recipeIngredients").value,
+                instructions: document.getElementById("recipeInstructions").value
+            };
+
+            addRecipe(recipe);
+
+            modal.style.display = "none";
+
+            document
+                .getElementById("recipeForm")
+                .reset();
+
+        });
+
+}
+
+function initializeGenerateWeek() {
+
+    const btn =
+        document.getElementById("generateMenuBtn");
+
+    btn.addEventListener("click", () => {
+
+        const recipes = getRecipes();
+
+        const weekContainer =
+            document.getElementById("weekContainer");
+
+        const days = [
+            "Lundi",
+            "Mardi",
+            "Mercredi",
+            "Jeudi",
+            "Vendredi",
+            "Samedi",
+            "Dimanche"
+        ];
+
+        weekContainer.innerHTML = "";
+
+        days.forEach(day => {
+
+            const lunch =
+                recipes[
+                    Math.floor(Math.random() * recipes.length)
+                ];
+
+            const dinner =
+                recipes[
+                    Math.floor(Math.random() * recipes.length)
+                ];
+
+            weekContainer.innerHTML += `
+                <div class="day-card">
+
+                    <div class="day-title">
+                        ${day}
+                    </div>
+
+                    <div class="meal">
+                        <div class="meal-title">
+                            Midi
+                        </div>
+
+                        <div class="meal-name">
+                            ${lunch.name}
+                        </div>
+                    </div>
+
+                    <div class="meal">
+                        <div class="meal-title">
+                            Soir
+                        </div>
+
+                        <div class="meal-name">
+                            ${dinner.name}
+                        </div>
+                    </div>
+
+                </div>
+            `;
+
+        });
+
+    });
+
+}
