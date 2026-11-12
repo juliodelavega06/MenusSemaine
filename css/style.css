@@ -1,1 +1,214 @@
+:root {
+    --primary: #2e7d32;
+    --primary-hover: #256628;
+    --background: #f5f7fa;
+    --card: #ffffff;
+    --text: #222;
+    --border: #e0e0e0;
+    --shadow: 0 2px 10px rgba(0,0,0,.08);
+}
 
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background: #121212;
+        --card: #1f1f1f;
+        --text: #f5f5f5;
+        --border: #333;
+        --shadow: 0 2px 10px rgba(0,0,0,.45);
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--background);
+    color: var(--text);
+    font-family: "Segoe UI", Arial, sans-serif;
+    min-height: 100vh;
+}
+
+.topbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--primary);
+    color: white;
+    padding: 16px;
+    text-align: center;
+    box-shadow: var(--shadow);
+}
+
+.topbar h1 {
+    font-size: 1.4rem;
+}
+
+main {
+    padding: 15px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.tabs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+    background: var(--card);
+    padding: 8px;
+    border-bottom: 1px solid var(--border);
+}
+
+.tab-btn {
+    border: none;
+    background: transparent;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: 0.9rem;
+}
+
+.tab-btn:hover {
+    background: rgba(46,125,50,.12);
+}
+
+.tab-btn.active {
+    background: var(--primary);
+    color: white;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.toolbar {
+    margin: 15px 0;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.primary-btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.primary-btn:hover {
+    background: var(--primary-hover);
+}
+
+.card {
+    background: var(--card);
+    padding: 16px;
+    border-radius: 16px;
+    margin-bottom: 15px;
+    box-shadow: var(--shadow);
+}
+
+.card h2 {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--card);
+    color: var(--text);
+}
+
+textarea {
+    resize: vertical;
+}
+
+.checkbox {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.checkbox input {
+    width: auto;
+}
+
+.day-card {
+    background: var(--card);
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 15px;
+    box-shadow: var(--shadow);
+}
+
+.day-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: var(--primary);
+}
+
+.meal {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 12px;
+}
+
+.meal-title {
+    font-size: .95rem;
+    margin-bottom: 8px;
+    opacity: .8;
+}
+
+.meal-name {
+    font-size: 1.05rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.meal-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.meal-actions button {
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    background: #ececec;
+}
+
+@media (prefers-color-scheme: dark) {
+    .meal-actions button {
+        background: #333;
+        color: white;
+    }
+}
+
+.recipe-card {
+    background: var(--card);
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 15px
