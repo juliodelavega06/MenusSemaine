@@ -1,174 +1,61 @@
-document.addEventListener("DOMContentLoaded", () => {
+const DEFAULT_RECIPES = [
+    {
+        id: 1,
+        name: "Lasagnes",
+        prepTime: 20,
+        cookTime: 45,
+        category: "viande",
+        ingredients: "Boeuf haché\nLasagnes\nTomates",
+        instructions: "Préparer la sauce puis cuire au four."
+    },
+    {
+        id: 2,
+        name: "Poulet Curry",
+        prepTime: 15,
+        cookTime: 30,
+        category: "viande",
+        ingredients: "Poulet\nOignon\nLait de coco",
+        instructions: "Faire revenir puis cuire."
+    },
+    {
+        id: 3,
+        name: "Quiche Lorraine",
+        prepTime: 15,
+        cookTime: 35,
+        category: "viande",
+        ingredients: "Lardons\nCrème\nOeufs",
+        instructions: "Mélanger puis cuire."
+    },
+    {
+        id: 4,
+        name: "Poisson Riz",
+        prepTime: 10,
+        cookTime: 20,
+        category: "poisson",
+        ingredients: "Cabillaud\nRiz",
+        instructions: "Cuire le poisson et le riz."
+    }
+];
 
-    initializeRecipes();
+function initializeRecipes() {
 
-    renderRecipes();
+    const existing = getRecipes();
 
-    initializeTabs();
+    if (existing.length === 0) {
 
-    initializeModal();
+        saveRecipes(DEFAULT_RECIPES);
 
-    initializeGenerateWeek();
-
-});
-
-function initializeTabs() {
-
-    const tabs =
-        document.querySelectorAll(".tab-btn");
-
-    tabs.forEach(tab => {
-
-        tab.addEventListener("click", () => {
-
-            document
-                .querySelectorAll(".tab-btn")
-                .forEach(btn => {
-                    btn.classList.remove("active");
-                });
-
-            document
-                .querySelectorAll(".tab-content")
-                .forEach(content => {
-                    content.classList.remove("active");
-                });
-
-            tab.classList.add("active");
-
-            const target =
-                document.getElementById(
-                    tab.dataset.tab
-                );
-
-            if (target) {
-                target.classList.add("active");
-            }
-
-        });
-
-    });
-
-}
-
-function initializeModal() {
-
-    const modal =
-        document.getElementById("recipeModal");
-
-    modal.style.display = "none";
-
-    document
-        .getElementById("addRecipeBtn")
-        .addEventListener("click", () => {
-
-            modal.style.display = "block";
-
-        });
-
-    document
-        .getElementById("closeModalBtn")
-        .addEventListener("click", () => {
-
-            modal.style.display = "none";
-
-        });
-
-    document
-        .getElementById("recipeForm")
-        .addEventListener("submit", e => {
-
-            e.preventDefault();
-
-            const recipe = {
-                id: Date.now(),
-                name: document.getElementById("recipeName").value,
-                prepTime: document.getElementById("recipePrepTime").value,
-                cookTime: document.getElementById("recipeCookTime").value,
-                category: document.getElementById("recipeCategory").value,
-                ingredients: document.getElementById("recipeIngredients").value,
-                instructions: document.getElementById("recipeInstructions").value
-            };
-
-            addRecipe(recipe);
-
-            modal.style.display = "none";
-
-            document
-                .getElementById("recipeForm")
-                .reset();
-
-        });
+    }
 
 }
 
-function initializeGenerateWeek() {
+function renderRecipes() {
 
-    const btn =
-        document.getElementById("generateMenuBtn");
+    const container =
+        document.getElementById("recipesContainer");
 
-    btn.addEventListener("click", () => {
+    if (!container) return;
 
-        const recipes = getRecipes();
+    const recipes = getRecipes();
 
-        const weekContainer =
-            document.getElementById("weekContainer");
-
-        const days = [
-            "Lundi",
-            "Mardi",
-            "Mercredi",
-            "Jeudi",
-            "Vendredi",
-            "Samedi",
-            "Dimanche"
-        ];
-
-        weekContainer.innerHTML = "";
-
-        days.forEach(day => {
-
-            const lunch =
-                recipes[
-                    Math.floor(Math.random() * recipes.length)
-                ];
-
-            const dinner =
-                recipes[
-                    Math.floor(Math.random() * recipes.length)
-                ];
-
-            weekContainer.innerHTML += `
-                <div class="day-card">
-
-                    <div class="day-title">
-                        ${day}
-                    </div>
-
-                    <div class="meal">
-                        <div class="meal-title">
-                            Midi
-                        </div>
-
-                        <div class="meal-name">
-                            ${lunch.name}
-                        </div>
-                    </div>
-
-                    <div class="meal">
-                        <div class="meal-title">
-                            Soir
-                        </div>
-
-                        <div class="meal-name">
-                            ${dinner.name}
-                        </div>
-                    </div>
-
-                </div>
-            `;
-
-        });
-
-    });
-
-}
+ 
