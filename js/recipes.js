@@ -44,6 +44,7 @@ function initializeRecipes() {
     if (existing.length === 0) {
         saveRecipes(DEFAULT_RECIPES);
     }
+
 }
 
 function renderRecipes() {
@@ -64,51 +65,9 @@ function renderRecipes() {
         card.className = "recipe-card";
 
         card.innerHTML = `
+
             <h3>${recipe.name}</h3>
 
             <div class="recipe-meta">
                 Préparation : ${recipe.prepTime} min
-            </div>
-
-            <div class="recipe-meta">
-                Cuisson : ${recipe.cookTime} min
-            </div>
-
-            <div class="recipe-actions">
-                <button class="delete-btn"
-                    onclick="deleteRecipe(${recipe.id})">
-                    🗑 Supprimer
-                </button>
-            </div>
-        `;
-
-        container.appendChild(card);
-
-    });
-
-}
-
-function deleteRecipe(id) {
-
-    let recipes = getRecipes();
-
-    recipes =
-        recipes.filter(r => r.id !== id);
-
-    saveRecipes(recipes);
-
-    renderRecipes();
-
-}
-
-function addRecipe(recipe) {
-
-    const recipes = getRecipes();
-
-    recipes.push(recipe);
-
-    saveRecipes(recipes);
-
-    renderRecipes();
-
-}
+         
