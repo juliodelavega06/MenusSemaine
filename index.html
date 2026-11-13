@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,7 @@
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 
 <header class="topbar">
@@ -17,6 +19,7 @@
 </header>
 
 <nav class="tabs">
+
     <button class="tab-btn active" data-tab="planning">
         📅 Planning
     </button>
@@ -28,18 +31,20 @@
     <button class="tab-btn" data-tab="shopping">
         🛒 Courses
     </button>
+
     <button class="tab-btn" data-tab="history">
         📜 Historique
     </button>
+
     <button class="tab-btn" data-tab="settings">
         ⚙️ Réglages
     </button>
+
 </nav>
 
 <main>
 
     <!-- PLANNING -->
-
     <section id="planning" class="tab-content active">
 
         <div class="toolbar">
@@ -53,15 +58,12 @@
     </section>
 
     <!-- RECETTES -->
-
     <section id="recipes" class="tab-content">
 
         <div class="toolbar">
-
             <button id="addRecipeBtn" class="primary-btn">
                 ➕ Ajouter une recette
             </button>
-
         </div>
 
         <div id="recipesContainer"></div>
@@ -69,36 +71,40 @@
     </section>
 
     <!-- COURSES -->
-
     <section id="shopping" class="tab-content">
 
         <div class="toolbar">
-
             <button id="generateShoppingBtn" class="primary-btn">
                 🛒 Générer la liste
             </button>
-
         </div>
 
         <div id="shoppingContainer"></div>
 
     </section>
 
-    <!-- PARAMETRES -->
+    <!-- HISTORIQUE -->
+    <section id="history" class="tab-content">
 
+        <div class="card">
+
+            <h2>Historique des menus</h2>
+
+            <div id="historyContainer">
+
+                <p>Aucun historique disponible.</p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- PARAMETRES -->
     <section id="settings" class="tab-content">
 
         <div class="card">
-            
-            <!-- HISTORIQUE -->
-<section id="history" class="tab-content">
 
-    <div class="card">
-        <h2>Historique des menus</h2>
-        <div id="historyContainer"></div>
-    </div>
-
-</section>
             <h2>Préférences</h2>
 
             <label>
@@ -151,7 +157,11 @@
             <textarea
                 id="pantryItems"
                 rows="8"
-                placeholder="sel&#10;poivre&#10;huile&#10;farine&#10;riz"></textarea>
+                placeholder="sel
+poivre
+huile
+farine
+riz"></textarea>
 
         </div>
 
@@ -223,7 +233,9 @@
                 <textarea
                     id="recipeIngredients"
                     rows="6"
-                    placeholder="1kg poulet&#10;2 tomates&#10;1 oignon"></textarea>
+                    placeholder="1kg poulet
+2 tomates
+1 oignon"></textarea>
             </label>
 
             <label>
